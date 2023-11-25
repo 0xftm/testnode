@@ -66,10 +66,10 @@ fi
 git clone https://github.com/engram-network/tokio-docker.git 
 cd tokio-docker
 git checkout dencun
-# sudo chmod +x ./scripts/*.sh
-# ./scripts/install-docker.sh
-# ./scripts/install-asdf.sh
-# mkdir -p execution consensus
+sudo chmod +x ./scripts/*.sh
+./scripts/install-docker.sh
+./scripts/install-asdf.sh
+mkdir -p execution consensus
 
 echo "Sua file: validator-deposit-data.sh"
 # sudo nano ./scripts/validator-deposit-data.sh
@@ -77,7 +77,7 @@ sed -i "s/^amount=32000000000/amount=20000000000/g" ./scripts/validator-deposit-
 sed -i "s/test test test test test test test test test test test junk/$reward/g" ./scripts/validator-deposit-data.sh
 sed -i "s/0x000000000000000000000000000000000000000b/$evm_address/g" ./scripts/validator-deposit-data.sh
 sed -i "s/0x000000000000.....................0000000000000/$evm_private_key/g" ./scripts/validator-deposit-data.sh
-
+sleep 1;
 bash ./scripts/validator-deposit-data.sh
 ./scripts/validator-build.sh
 
@@ -99,8 +99,6 @@ sed -i "s/      - --identity=Huemint # Change With Your userdiscord without hand
 sed -i "s/      - --enr-address=0.0.0.0/      - --enr-address=$enr_address /g" ./docker-compose.yml
 sed -i "s/      - --graffiti=Huemint /      - --graffiti=$graffiti /g" ./docker-compose.yml
 sed -i "s/      - --ethstats=YourNameNodeHere:engramstats@nodewatch.engram.tech/      - --ethstats=$ethstats:engramstats@nodewatch.engram.tech /g" ./docker-compose.yml
-
+sleep 1;
 sudo docker compose up -d
-
-
-sleep 2;
+sleep 1;
