@@ -95,9 +95,9 @@ while [ -z "$identity" ] || [ -z "$enr_address" ] || [ -z "$graffiti" ] || [ -z 
     fi
 done
 
-sed -i "s/      - --identity=Huemint # Change With Your userdiscord without handle or hastag/      - --identity=$identity/g" ./docker-compose.yml
-sed -i "s/      - --enr-address=0.0.0.0/      - --enr-address=$enr_address/g" ./docker-compose.yml
-sed -i "s/      - --graffiti=Huemint /      - --graffiti=$graffiti/g" ./docker-compose.yml
+sed -i "s/      - --identity=Huemint # Change With Your userdiscord without handle or hastag/      - --identity=$identity /g" ./docker-compose.yml
+sed -i "s/      - --enr-address=0.0.0.0/      - --enr-address=$enr_address /g" ./docker-compose.yml
+sed -i "s/      - --graffiti=Huemint /      - --graffiti=$graffiti /g" ./docker-compose.yml
 sed -i "s/      - --ethstats=YourNameNodeHere:engramstats@nodewatch.engram.tech/      - --ethstats=$ethstats:engramstats@nodewatch.engram.tech /g" ./docker-compose.yml
 
 sudo docker compose up -d
