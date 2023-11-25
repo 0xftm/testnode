@@ -59,7 +59,7 @@ git checkout dencun
 sed -i 's/^amount=32000000000/amount=20000000000/g' ./scripts/validator-deposit-data.sh
 sed -i 's/test test test test test test test test test test test junk/abc abc asda/g' ./scripts/validator-deposit-data.sh
 
-sed -i 's/0x000000000000000000000000000000000000000b/$evm_address/g' ./scripts/validator-deposit-data.sh
+sed -i 's/0x000000000000000000000000000000000000000b/"$evm_address"/g' ./scripts/validator-deposit-data.sh
 sed -i 's/0x000000000000.....................0000000000000/$evm_private_key/g' ./scripts/validator-deposit-data.sh
 
 
