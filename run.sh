@@ -17,51 +17,23 @@ banner;
 
 echo "===========Engram Network Installing======= " && sleep 1
 
-while true; do
-    echo "Nhập tên của bạn:"
-    read name
+# Khai báo biến
+reward=""
+evm_address=""
+evm_private_key=""
 
-    if (( ${#name} < 3 )); then
-        echo "Tên phải có ít nhất 3 ký tự. Vui lòng nhập lại."
-    else
-        break
+# Lặp lại việc nhập thông tin cho đến khi các trường đều không trống
+while [ -z "$reward" ] || [ -z "$evm_address" ] || [ -z "$evm_private_key" ]; do
+    read -p "Nhập 24 ký tự ví nhận reward: " reward
+    read -p "Nhập địa chỉ ví EVM: " evm_address
+    read -p "Nhập private key ví EVM: " evm_private_key
+
+    # Kiểm tra nếu bất kỳ trường nào là rỗng, yêu cầu người dùng nhập lại
+    if [ -z "$reward" ] || [ -z "$evm_address" ] || [ -z "$evm_private_key" ]; then
+        echo "Vui lòng điền đầy đủ thông tin (24 ký tự ví nhận reward, địa chỉ ví EVM và private key ví EVM)."
     fi
 done
 
-echo "Nhập tuổi của bạn:"
-read age
-
-echo "Tên: $name, Tuổi: $age"
-
-
-# read -p "Enter your Node name: " input_moniker
-# if [ -z "$input_moniker" ]; then
-# echo "Node Name cannot be empty!"
-# exit 1
-# fi
-# MONIKER="$input_moniker"
-# echo "Node Name is: $MONIKER"
-
-# sudo apt update && apt upgrade -y
-
-# git clone https://github.com/engram-network/tokio-docker.git 
-# cd tokio-docker
-# git checkout dencun
-# sudo chmod +x ./scripts/*.sh
-# ./scripts/install-docker.sh
-# ./scripts/install-asdf.sh
-# mkdir -p execution consensus
-
-
- 
-# sleep 2;
-# # set vars
-# AVAIL_TAG="v1.8.0.2"
-# if [ ! $AVAIL_NODE_NAME ]; then
-# 	read -p "Enter node name: " AVAIL_NODE_NAME
-# 	echo 'export AVAIL_NODE_NAME='$AVAIL_NODE_NAME >> $HOME/.bash_profile
-# fi
-# source $HOME/.bash_profile
 # echo -e '================================================='
 # echo -e "Your node name: \e[1;33m$AVAIL_NODE_NAME\e[0m"
 # echo -e "Your p2p port: \e[1;33m30333\e[0m"
@@ -69,3 +41,19 @@ echo "Tên: $name, Tuổi: $age"
 # echo -e "Your prometheus port: \e[1;33m9615\e[0m"
 # echo '================================================='
 # sleep 2;
+
+# sudo apt update && apt upgrade -y
+
+git clone https://github.com/engram-network/tokio-docker.git 
+cd tokio-docker
+git checkout dencun
+# sudo chmod +x ./scripts/*.sh
+# ./scripts/install-docker.sh
+# ./scripts/install-asdf.sh
+# mkdir -p execution consensus
+
+sudo nano ./scripts/validator-deposit-data.sh
+sed -i 's/^amount=32000000000/amount=31000000000/g' ./scripts/validator-deposit-data.sh
+
+
+sleep 2;
