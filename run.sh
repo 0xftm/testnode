@@ -43,15 +43,6 @@ while [ -z "$reward" ] || [ -z "$evm_address" ] || [ -z "$evm_private_key" ]; do
     fi
 done
 
-# echo -e '================================================='
-# echo -e "Your node name: \e[1;33m$AVAIL_NODE_NAME\e[0m"
-# echo -e "Your p2p port: \e[1;33m30333\e[0m"
-# echo -e "Your rpc port: \e[1;33m9944\e[0m"
-# echo -e "Your prometheus port: \e[1;33m9615\e[0m"
-# echo '================================================='
-# sleep 2;
-
-
 # Kiểm tra xem thư mục tồn tại không
 if [ -d "$folder_to_check" ]; then
     echo "Thư mục tồn tại. Đang xóa..."
