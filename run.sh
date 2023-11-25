@@ -45,6 +45,17 @@ done
 # echo '================================================='
 # sleep 2;
 
+folder_to_check="/tokio-docker"
+
+# Kiểm tra xem thư mục tồn tại không
+if [ -d "$folder_to_check" ]; then
+    echo "Thư mục tồn tại. Đang xóa..."
+    rm -r "$folder_to_check"  # Xóa thư mục và tất cả các nội dung bên trong
+    echo "Thư mục đã được xóa."
+else
+    echo "Thư mục không tồn tại."
+fi
+
 # sudo apt update && apt upgrade -y
 
 git clone https://github.com/engram-network/tokio-docker.git 
