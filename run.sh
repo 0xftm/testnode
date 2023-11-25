@@ -90,7 +90,7 @@ while [ -z "$identity" ] || [ -z "$enr_address" ] || [ -z "$graffiti" ] || [ -z 
     read -p "Nhập tên: " graffiti
 
     # Kiểm tra nếu bất kỳ trường nào là rỗng, yêu cầu người dùng nhập lại
-    if [ -z "$reward" ] || [ -z "$evm_address" ] || [ -z "$evm_private_key" ]  || [ -z "$ethstats" ]; then
+    if [ -z "$identity" ] || [ -z "$enr_address" ] || [ -z "$graffiti" ]  || [ -z "$ethstats" ]; then
         echo "Vui lòng điền đầy đủ thông tin."
     fi
 done
