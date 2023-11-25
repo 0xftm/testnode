@@ -100,5 +100,7 @@ sed -i "s/      - --enr-address=0.0.0.0/      - --enr-address=$enr_address/g" ./
 sed -i "s/      - --graffiti=Huemint /      - --graffiti=$graffiti/g" ./docker-compose.yml
 sed -i "s/      - --ethstats=YourNameNodeHere:engramstats@nodewatch.engram.tech/      - --ethstats=$ethstats:engramstats@nodewatch.engram.tech /g" ./docker-compose.yml
 
+sudo docker compose up -d
+
 
 sleep 2;
