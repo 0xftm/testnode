@@ -45,7 +45,7 @@ done
 # echo '================================================='
 # sleep 2;
 
-folder_to_check="tokio-docker"
+folder_to_check="$HOME/tokio-docker/"
 
 # Kiểm tra xem thư mục tồn tại không
 if [ -d "$folder_to_check" ]; then
@@ -67,11 +67,10 @@ git checkout dencun
 # mkdir -p execution consensus
 
 # sudo nano ./scripts/validator-deposit-data.sh
-sed -i 's/^amount=32000000000/amount=20000000000/g' ./scripts/validator-deposit-data.sh
-sed -i 's/test test test test test test test test test test test junk/abc abc asda/g' ./scripts/validator-deposit-data.sh
-
-sed -i 's/0x000000000000000000000000000000000000000b/"$evm_address"/g' ./scripts/validator-deposit-data.sh
-sed -i 's/0x000000000000.....................0000000000000/$evm_private_key/g' ./scripts/validator-deposit-data.sh
+sed -i "s/^amount=32000000000/amount=20000000000/g" ./scripts/validator-deposit-data.sh
+sed -i "s/test test test test test test test test test test test junk/$reward/g" ./scripts/validator-deposit-data.sh
+sed -i "s/0x000000000000000000000000000000000000000b/$evm_address/g" ./scripts/validator-deposit-data.sh
+sed -i "s/0x000000000000.....................0000000000000/$evm_private_key/g" ./scripts/validator-deposit-data.sh
 
 
 
