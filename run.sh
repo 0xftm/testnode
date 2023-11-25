@@ -55,7 +55,7 @@ git checkout dencun
 # ./scripts/install-asdf.sh
 # mkdir -p execution consensus
 
-sudo nano ./scripts/validator-deposit-data.sh
+# sudo nano ./scripts/validator-deposit-data.sh
 sed -i 's/^amount=32000000000/amount=31000000000/g' ./scripts/validator-deposit-data.sh
 
 
