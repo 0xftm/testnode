@@ -78,8 +78,8 @@ sed -i "s/test test test test test test test test test test test junk/$reward/g"
 sed -i "s/0x000000000000000000000000000000000000000b/$evm_address/g" ./scripts/validator-deposit-data.sh
 sed -i "s/0x000000000000.....................0000000000000/$evm_private_key/g" ./scripts/validator-deposit-data.sh
 
-bash ./scripts/validator-deposit-data.sh
-./scripts/validator-build.sh
+# bash ./scripts/validator-deposit-data.sh
+# ./scripts/validator-build.sh
 
 
 # Lặp lại việc nhập thông tin cho đến khi các trường đều không trống
