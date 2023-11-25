@@ -45,7 +45,7 @@ done
 # echo '================================================='
 # sleep 2;
 
-folder_to_check="/tokio-docker"
+folder_to_check="tokio-docker"
 
 # Kiểm tra xem thư mục tồn tại không
 if [ -d "$folder_to_check" ]; then
