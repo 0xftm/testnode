@@ -20,10 +20,16 @@ echo "===========Engram Network Installing======= " && sleep 1
 echo "Nhập mật khẩu của root:"
 su -c 'whoami' 
 
+folder_to_check="$HOME/tokio-docker/"
 # Khai báo biến
 reward=""
 evm_address=""
 evm_private_key=""
+
+identity=""
+enr_address=""
+graffiti=""
+ethstats=""
 
 # Lặp lại việc nhập thông tin cho đến khi các trường đều không trống
 while [ -z "$reward" ] || [ -z "$evm_address" ] || [ -z "$evm_private_key" ]; do
@@ -45,7 +51,6 @@ done
 # echo '================================================='
 # sleep 2;
 
-folder_to_check="$HOME/tokio-docker/"
 
 # Kiểm tra xem thư mục tồn tại không
 if [ -d "$folder_to_check" ]; then
@@ -66,13 +71,34 @@ git checkout dencun
 # ./scripts/install-asdf.sh
 # mkdir -p execution consensus
 
+echo "Sua file: validator-deposit-data.sh"
 # sudo nano ./scripts/validator-deposit-data.sh
 sed -i "s/^amount=32000000000/amount=20000000000/g" ./scripts/validator-deposit-data.sh
 sed -i "s/test test test test test test test test test test test junk/$reward/g" ./scripts/validator-deposit-data.sh
 sed -i "s/0x000000000000000000000000000000000000000b/$evm_address/g" ./scripts/validator-deposit-data.sh
 sed -i "s/0x000000000000.....................0000000000000/$evm_private_key/g" ./scripts/validator-deposit-data.sh
 
+bash ./scripts/validator-deposit-data.sh
+./scripts/validator-build.sh
 
+
+# Lặp lại việc nhập thông tin cho đến khi các trường đều không trống
+while [ -z "$identity" ] || [ -z "$enr_address" ] || [ -z "$graffiti" ] || [ -z "$ethstats" ]; do
+    read -p "Nhập tên Node: " ethstats
+    read -p "Nhập id discord: " identity
+    read -p "Nhập địa chỉ IP public: " enr_address
+    read -p "Nhập tên: " graffiti
+
+    # Kiểm tra nếu bất kỳ trường nào là rỗng, yêu cầu người dùng nhập lại
+    if [ -z "$reward" ] || [ -z "$evm_address" ] || [ -z "$evm_private_key" ]  || [ -z "$ethstats" ]; then
+        echo "Vui lòng điền đầy đủ thông tin."
+    fi
+done
+
+sed -i "s/      - --identity=Huemint # Change With Your userdiscord without handle or hastag/      - --identity=$identity/g" ./docker-compose.yml
+sed -i "s/      - --enr-address=0.0.0.0/      - --enr-address=$enr_address/g" ./docker-compose.yml
+sed -i "s/      - --graffiti=Huemint /      - --graffiti=$graffiti/g" ./docker-compose.yml
+sed -i "s/      - --ethstats=YourNameNodeHere:engramstats@nodewatch.engram.tech/      - --ethstats=$ethstats/g" ./docker-compose.yml
 
 
 sleep 2;
