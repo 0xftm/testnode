@@ -17,6 +17,9 @@ banner;
 
 echo "===========Engram Network Installing======= " && sleep 1
 
+echo "Nhập mật khẩu của root:"
+su -c 'whoami' 
+
 # Khai báo biến
 reward=""
 evm_address=""
